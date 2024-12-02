@@ -67,11 +67,9 @@ The function `qa_with_cohere` creates a prompt using the extracted text or image
 
 ---
 
-### Example Workflow
-1. Upload an image containing a table.
-2. The app extracts the table text and waits for a query.
-3. Input: *"What does Table 13 represent?"*
-4. Output: The AI provides a response based on the extracted text.
+### Output
+![image](https://github.com/user-attachments/assets/065dac1f-71cd-456d-894d-3d346b7029fd)
+![image](https://github.com/user-attachments/assets/eedaa172-3271-45f4-9796-430614f84f4b)
 
 ---
 
