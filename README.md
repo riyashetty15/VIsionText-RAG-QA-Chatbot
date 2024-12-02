@@ -9,7 +9,7 @@ This repository contains the code for an Image QA (Question Answering) RAG (Retr
 <ul><b>Streamlit Interface</b>: A user-friendly interface built with Streamlit.</ul>
 <br>
 <br>
-## Prerequisites
+## Pre-Requisites
 <li>Python 3.7 or higher</li>
 <li>Streamlit</li>
 <li>Cohere API Key</li>
