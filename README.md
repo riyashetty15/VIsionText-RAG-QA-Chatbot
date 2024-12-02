@@ -1,28 +1,89 @@
-# Image-QA-RAG-Chatbot
-This repository contains the code for an Image QA (Question Answering) RAG (Retrieval-Augmented Generation) Chatbot built using Streamlit, Cohere, and BLIP (Bootstrapped Language-Image Pre-training). The chatbot allows users to upload an image, generates a description of the image, and then answers questions about the image based on the generated description.
-<br>
-<br>
-## Features
-<ul><b> Image Upload </b>: Users can upload images in PNG, JPG, or JPEG formats.</ul>
-<ul><b>Image Description</b>: The chatbot uses BLIP to generate a description of the uploaded image.</ul>
-<ul><b>Question Answering</b>: Users can ask questions about the image, and the chatbot uses Cohere to generate answers based on the image description.</ul>
-<ul><b>Streamlit Interface</b>: A user-friendly interface built with Streamlit.</ul>
+## VisionText RAG QA Chatbot
 
-## Pre-Requisites
-<li>Python 3.7 or higher</li>
-<li>Streamlit</li>
-<li>Cohere API Key</li>
-<li>BLIP (Bootstrapped Language-Image Pre-training)</li>
+### Overview
+The **Image QA RAG Chatbot** is a Streamlit-based application designed to analyze uploaded images and answer user queries about the content. It uses state-of-the-art AI models for text extraction, image description, and natural language understanding to provide meaningful insights.  
 
-## Key Components
-- **Image Description**: Uses BLIP to generate a description of the uploaded image.
-- **Question Answering**: Uses Cohere to generate answers based on the image description.
-  
-### Streamlit UI
-- **File Uploader**: Allows users to upload an image file.
-- **Image Display**: Displays the uploaded image on the Streamlit app.
-- **Image Analysis**: Extracts and displays the image description.
-- **Question Input**: Provides a text input for users to ask questions about the image.
-- **Response Display**: Shows the AI-generated response to the user's question.
+---
 
-This code sets up a Streamlit application that allows users to interact with an AI chatbot capable of analyzing images and answering questions about them. The main components include image processing, language generation, and a user-friendly interface.
+### Features
+- **OCR-based Text Extraction**: Extracts text from images using Tesseract OCR for text-heavy images.
+- **Image Description**: Generates natural language descriptions for visual (non-text) images using BLIP (a vision-language model).
+- **Question Answering**: Provides answers to user queries about the extracted text or generated image description using Cohere's large language models.
+- **Streamlit Interface**: Interactive user interface for image uploads and chat-based interactions.
+
+---
+
+### How It Works
+1. **Upload an Image**: The app accepts image files in `.png`, `.jpg`, or `.jpeg` formats through a sidebar uploader.
+2. **Image Analysis**:
+   - **Text Classification**: Determines whether the image is text-heavy or natural using heuristics (e.g., amount of detected text).
+   - **Text Extraction**: If the image is text-heavy, the app extracts textual data using Tesseract OCR.
+   - **Image Description**: For natural images, the app generates captions using BLIP.
+3. **Question Answering**: Users can input queries about the image's content, and the app uses Cohere's LLMs to generate responses based on the analyzed content.
+4. **Chat Interface**: The conversation is stored and displayed in a chat-like format for a seamless experience.
+
+---
+
+### Installation
+
+#### Prerequisites
+- Python 3.8+
+- The following Python libraries:
+  - `streamlit`
+  - `pytesseract`
+  - `Pillow`
+  - `cohere`
+  - `transformers`
+  - `pandas`
+  - `langchain` and its dependencies
+
+3. Set up Tesseract OCR:
+   - Install Tesseract (required for OCR functionality). Instructions can be found [here](https://github.com/tesseract-ocr/tesseract).
+   - Ensure Tesseract is in your system's PATH.
+4. Set your Cohere API key:
+   - Replace `YOUR_API_KEY` in the code with your own Cohere API key.
+
+---
+
+
+### Code Explanation
+
+#### 1. **Text vs. Natural Image Classification**
+The function `classify_image` uses Tesseract OCR to detect text in the image. If significant text is found, the image is classified as "text"; otherwise, it's "natural."
+
+#### 2. **Text Extraction (OCR)**
+For text-heavy images, `extract_text_from_image` uses Tesseract OCR to extract text and returns it as a string.
+
+#### 3. **Image Description**
+For natural images, `get_image_description` leverages BLIP (Salesforce's image captioning model) to generate a descriptive caption.
+
+#### 4. **Cohere for Question Answering**
+The function `qa_with_cohere` creates a prompt using the extracted text or image description and sends it to Cohere's language model to generate a response.
+
+#### 5. **Streamlit Interface**
+- **File Upload**: Allows users to upload an image via the sidebar.
+- **Image Display**: Displays the uploaded image for user reference.
+- **Chat Interface**: Captures user queries and displays AI responses in a chat format.
+
+---
+
+### Example Workflow
+1. Upload an image containing a table.
+2. The app extracts the table text and waits for a query.
+3. Input: *"What does Table 13 represent?"*
+4. Output: The AI provides a response based on the extracted text.
+
+---
+
+### Dependencies
+- **Tesseract OCR**: For text extraction from images.
+- **BLIP**: For natural image captioning.
+- **Cohere**: For answering questions about the analyzed content.
+- **Streamlit**: For building the user interface.
+
+---
+
+### Future Improvements
+- Support for multiple languages in OCR.
+- Enhanced table extraction capabilities for structured data.
+- Integration with additional language models for diverse use cases.
