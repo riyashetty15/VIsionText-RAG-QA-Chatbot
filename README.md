@@ -1,7 +1,7 @@
 ## VisionText RAG QA Chatbot
 
 ### Overview
-The **Image QA RAG Chatbot** is a Streamlit-based application designed to analyze uploaded images and answer user queries about the content. It uses state-of-the-art AI models for text extraction, image description, and natural language understanding to provide meaningful insights.  
+The **QA RAG Chatbot** is a Streamlit-based application designed to analyze uploaded images and answer user queries about the content. It uses state-of-the-art AI models for text extraction, image description, and natural language understanding to provide meaningful insights.  
 
 ---
 
